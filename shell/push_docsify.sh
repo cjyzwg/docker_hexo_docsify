@@ -1,5 +1,5 @@
 #!/bin/bash
-target=/root/docker-hexo-docsify
+target=/root/docker_hexo_docsify
 eval `ssh-agent -s`
 ssh-add /root/.ssh/homeinchina
 a=`cd $target/data/docs/ && git pull`
