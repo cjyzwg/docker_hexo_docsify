@@ -1,0 +1,31 @@
+version: "2"
+services:
+  hexo-svc:
+    build:
+      context: .
+      args:
+        NODE_VERSION: 14
+    container_name: cj-hexo
+    image: hexo-docsify:latest
+    restart: always
+    environment:
+      HEXO_SERVER_PORT: 4000
+    ports:
+      - '4000:4000'
+    volumes:
+      - ./data/blog:/root/blog
+  docsify-svc:
+    build:
+      context: .
+      args:
+        NODE_VERSION: 14
+    container_name: cj-docsify
+    image: hexo-docsify:latest
+    restart: always
+    environment:
+      DOCSIFY_SERVER_PORT: 3000
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./data/docs:/root/docs
+    entrypoint: ["docsify-entrypoint.sh"]
